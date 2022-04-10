@@ -1,5 +1,5 @@
 pipeline{
-      agent { label 'slave1' }
+      agent { label 'docker_slave1' }
       stages{
       stage('check out'){
                   steps{
@@ -22,7 +22,7 @@ pipeline{
                   }
             }
             stage('deploy'){
-                  agent { label 'slave2' }
+                  agent { label 'docker_slave1' }
                   steps{
                         sh "docker login -u rakshitamjdocker -p docker123"
                         sh "docker pull rakshitamjdocker/mavenimg:1.0"
