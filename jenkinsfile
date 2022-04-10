@@ -26,7 +26,7 @@ pipeline{
                   steps{
                         sh "docker login -u rakshitamjdocker -p docker123"
                         sh "docker pull rakshitamjdocker/mavenimg:1.0"
-                        //sh "docker rm -f trail1"
+                        sh "docker rm -f trail1"
                         sh "docker run -d -p 8085:8080 --name trail1 rakshitamjdocker/mavenimg:1.0"
                   }
             }
