@@ -12,13 +12,13 @@ pipeline{
       sh "pwd"
       sh "ls"
       sh "cd hello-world-war"
-      sh "docker build -t rakshitamjdocker/mavenimg:${BUILD_NUMBER} ."
+      sh "docker build -t rakshitamjdocker/mavenimg"
       }
       }
        stage('publish'){
                   steps{
                         sh "docker login -u rakshitamjdocker -p docker123"
-                        sh "docker push rakshitamjdocker/mavenimg:${BUILD_NUMBER}"
+                        sh "docker push rakshitamjdocker/mavenimg"
                   }
             }
             stage('deploy'){
