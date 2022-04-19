@@ -28,7 +28,7 @@ pipeline{
                   sh " kubectl get pod "
                   sh " kubectl get deployment "
                   sh " kubectl get pod "
-                  sh " kubectl apply -f /root/tomcat_nodeportsvc.yml "
+                  sh " kubectl apply -f /root/servicetom.yml "
                   sh " kubectl get svc "
                         //sh "docker login -u rakshitamjdocker -p docker123"
                         
