@@ -24,7 +24,7 @@ pipeline{
             stage('deploy'){
                   agent { label 'raks' }
                   steps{
-                  sh " kubectl apply -f /root/deployment.yml"
+                  sh " kubectl apply -f /root/deploy.yml"
                   sh " kubectl get pod "
                   sh " kubectl get deployment "
                   sh " kubectl get pod "
