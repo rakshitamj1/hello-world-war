@@ -1,0 +1,40 @@
+pipeline{
+      agent any
+      stages{
+      stage('check out'){
+                  steps{
+                  sh "rm -rf hello-world-war"
+                  sh "git clone https://github.com/rakshitamj1/hello-world-war.git"
+                  }
+                  }
+      stage('build'){
+      steps{
+      sh "pwd"
+      sh "ls"
+      sh "cd hello-world-war"
+      sh "docker build -t rakshitamjdocker/mavenimg:${BUILD_NUMBER} ."
+      }
+      }
+       stage('publish'){
+                  steps{
+                        sh "docker login -u rakshitamjdocker -p docker123"
+                        sh "docker push rakshitamjdocker/mavenimg:${BUILD_NUMBER}"
+                  }
+            }
+            stage('deploy'){
+                  agent { label 'raks' }
+                  steps{
+                  sh " kubectl apply -f /root/deployment.yml"
+                  sh " kubectl get pod "
+                  sh " kubectl get deployment "
+                  sh " kubectl get pod "
+                  sh " kubectl apply -f /root/tomcat_nodeportsvc.yml "
+                  sh " kubectl get svc "
+                        //sh "docker login -u rakshitamjdocker -p docker123"
+                        
+                  
+                        //sh "docker run -d -p 8085:8080 --name trail1 rakshitamjdocker/mavenimg:${BUILD_NUMBER}"
+                  }
+            }
+      }
+      }
